@@ -1,27 +1,269 @@
-*{box-sizing:border-box}
-:root{--bg:#fff9f0;--card:#fff;--text:#2c211c;--muted:#7a6a60;--accent:#b33a25;--gold:#c9912e;--line:#eadbca}
-body{margin:0;background:radial-gradient(circle at top,#fff1d7 0,#fff9f0 42%,#f7eee4 100%);color:var(--text);font-family:system-ui,"Noto Sans Bengali",sans-serif}
-.hero{text-align:center;padding:52px 18px 34px;position:relative;overflow:hidden}
-.glow{position:absolute;width:260px;height:260px;border-radius:50%;background:#ffd98a;filter:blur(65px);opacity:.35;left:50%;top:-130px;transform:translateX(-50%)}
-.eyebrow{letter-spacing:2px;color:var(--accent);font-weight:700;margin:0 0 8px}
-h1{font-size:clamp(2rem,9vw,4.4rem);margin:0 0 8px}
-h2{margin:0 0 8px;font-size:1.25rem}
-.subtitle{font-size:1.1rem;color:var(--muted)}
-.countdown{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:22px;font-weight:800;color:var(--accent)}
-.countdown span{background:#fff;border:1px solid var(--line);padding:10px 12px;border-radius:14px;min-width:70px;box-shadow:0 5px 20px #8d5c2212}
-main{width:min(900px,92%);margin:auto;display:grid;gap:18px;padding-bottom:35px}
-.card{background:#ffffffd9;border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:0 12px 35px #6f431012;backdrop-filter:blur(5px)}
-.muted{color:var(--muted);margin-top:0}
-.options{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:15px}
-.options button{border:1px solid var(--line);background:#fff8ee;border-radius:14px;padding:13px;font-size:1rem;font-weight:700;cursor:pointer}
-.options button:hover,.options button.selected{background:#f8dfb0;border-color:var(--gold)}
-.result{margin-top:10px}.bar{height:10px;background:#eee0d1;border-radius:99px;overflow:hidden}.fill{height:100%;background:var(--accent)}
-.result-head{display:flex;justify-content:space-between;font-size:.92rem;margin-bottom:4px}
-.section-title{display:flex;justify-content:space-between;align-items:center}
-#onlineCount{font-weight:800;color:#258347}
-audio{width:100%;margin-top:10px}
-.playlist{display:grid;gap:10px}.song{padding:12px;border:1px solid var(--line);border-radius:14px}
-.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.gallery img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:15px}
-.greetings{display:grid;gap:10px}.greeting{padding:15px;border-radius:15px;background:#fff7ea;border:1px solid var(--line)}
-footer{text-align:center;color:var(--muted);padding:25px}
-@media(max-width:600px){.options{grid-template-columns:repeat(2,1fr)}.gallery{grid-template-columns:repeat(2,1fr)}}
+/* =====================================================
+   style.css
+   Puja Website — Gallery, Countdown, Clothing & Audio
+   ===================================================== */
+
+.section-heading {
+  text-align: center;
+  margin: 35px auto 22px;
+  padding: 0 15px;
+}
+
+.section-heading span {
+  font-size: 28px;
+}
+
+.section-heading h2 {
+  margin: 7px 0 5px;
+  font-size: 25px;
+  color: #8b1e3f;
+}
+
+.section-heading p {
+  margin: 0;
+  color: #777;
+  font-size: 14px;
+}
+
+/* ================= GALLERY ================= */
+
+.photo-grid {
+  width: min(1100px, 92%);
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.photo-card {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 8px 25px rgba(80, 40, 20, 0.12);
+}
+
+.photo-card img {
+  width: 100%;
+  height: 250px;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.photo-card:hover img {
+  transform: scale(1.04);
+}
+
+.photo-card figcaption {
+  text-align: center;
+  padding: 10px;
+  font-weight: 600;
+  color: #8b1e3f;
+}
+
+/* ================= COUNTDOWN ================= */
+
+.countdown-grid {
+  width: min(1000px, 92%);
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.countdown-card {
+  padding: 25px 18px;
+  border-radius: 22px;
+  text-align: center;
+  background: linear-gradient(145deg, #fffdf8, #fff3df);
+  box-shadow: 0 10px 28px rgba(80, 40, 20, 0.12);
+  border: 1px solid rgba(139, 30, 63, 0.08);
+}
+
+.countdown-icon {
+  font-size: 30px;
+}
+
+.countdown-card h3 {
+  margin: 8px 0 4px;
+  color: #8b1e3f;
+}
+
+.countdown-card p {
+  color: #777;
+  margin-bottom: 18px;
+}
+
+.timer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.timer div {
+  background: #fff;
+  border-radius: 12px;
+  padding: 10px 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.timer strong {
+  display: block;
+  font-size: 23px;
+  color: #8b1e3f;
+}
+
+.timer span {
+  font-size: 11px;
+  color: #777;
+}
+
+/* ================= CLOTHING ================= */
+
+.clothing-card {
+  width: min(850px, 92%);
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.clothing-option {
+  cursor: pointer;
+  text-align: center;
+  padding: 18px 10px;
+  border-radius: 16px;
+  background: #fff;
+  border: 2px solid #eee;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.06);
+  transition: 0.25s ease;
+}
+
+.clothing-option:hover {
+  transform: translateY(-3px);
+  border-color: #d6a34a;
+}
+
+.clothing-option input {
+  display: none;
+}
+
+.clothing-option span {
+  display: block;
+  font-size: 27px;
+  margin-bottom: 8px;
+}
+
+.clothing-option strong {
+  font-size: 14px;
+  color: #555;
+}
+
+.clothing-option:has(input:checked) {
+  border-color: #8b1e3f;
+  background: #fff7f0;
+}
+
+/* ================= POLL RESULT ================= */
+
+.poll-results {
+  width: min(850px, 92%);
+  margin: 20px auto 0;
+}
+
+.poll-result {
+  margin: 9px 0;
+}
+
+.poll-result-top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+.poll-bar {
+  height: 9px;
+  background: #eee;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.poll-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #8b1e3f, #d6a34a);
+  border-radius: 20px;
+}
+
+/* ================= AUDIO ================= */
+
+.audio-grid {
+  width: min(950px, 92%);
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.audio-card {
+  padding: 18px;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 7px 22px rgba(80, 40, 20, 0.09);
+}
+
+.audio-card h3 {
+  margin: 0 0 12px;
+  color: #8b1e3f;
+  font-size: 16px;
+}
+
+.audio-card audio {
+  width: 100%;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 700px) {
+
+  .photo-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .photo-card img {
+    height: 180px;
+  }
+
+  .countdown-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .clothing-card {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .audio-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 430px) {
+
+  .photo-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .photo-card img {
+    height: 230px;
+  }
+
+  .timer {
+    gap: 5px;
+  }
+
+  .timer strong {
+    font-size: 19px;
+  }
+}
