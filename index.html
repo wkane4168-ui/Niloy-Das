@@ -1,537 +1,223 @@
-
-    <!doctype html>
+<!DOCTYPE html>
 <html lang="bn">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>শ্রী শ্রী শালিখা সার্বজনীন দুর্গা মন্দির — শারদীয়া পূজা ২০২৬</title>
-
-  <meta
-    name="description"
-    content="শ্রী শ্রী শালিখা সার্বজনীন দুর্গা মন্দিরের শারদীয়া দুর্গাপূজা ২০২৬"
-  >
-
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>দেবীপক্ষ - Durga Puja Countdown & Music Player</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif}
+        body{background:#0d111d;color:#fff;display:flex;justify-content:center;align-items:center;min-height:100vh;padding:10px}
+        .mobile-container{width:100%;max-width:420px;height:90vh;max-height:850px;background:linear-gradient(180deg,#131929 0%,#1e131d 50%,#2a181e 100%);border-radius:30px;overflow-y:auto;position:relative;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 20px 40px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.1)}
+        .top-bar{display:flex;justify-content:space-between;align-items:center;padding:20px 20px 10px;z-index:10}
+        .pill-button,.user-profile{background:rgba(255,255,255,.1);backdrop-filter:blur(10px);border-radius:20px}
+        .pill-button{padding:8px 16px;display:flex;align-items:center;gap:8px;font-size:14px;font-weight:500}
+        .online-dot{width:10px;height:10px;background:#22c55e;border-radius:50%;box-shadow:0 0 8px #22c55e}
+        .user-profile{display:flex;align-items:center;gap:8px;cursor:pointer;padding:6px 12px;border:1px solid rgba(255,255,255,.15)}
+        .profile-img{width:28px;height:28px;border-radius:50%;object-fit:cover;background:#4b5563;display:flex;align-items:center;justify-content:center;font-size:14px}
+        .username-text{font-size:13px;font-weight:600}
+        .main-content{text-align:center;padding:10px 20px;flex-grow:1;display:flex;flex-direction:column;align-items:center}
+        .title-bengali{font-size:42px;color:#facc15;font-weight:800;text-shadow:0 0 15px rgba(250,204,21,.4);margin-bottom:4px;letter-spacing:1px}
+        .countdown-text{font-size:14px;color:#d1d5db;margin-bottom:20px}
+        .artwork-container{width:100%;height:220px;border-radius:20px;overflow:hidden;position:relative;margin-bottom:15px;background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,.8) 100%),url('https://images.unsplash.com/photo-1601625839149-764c44ad8079?q=80&w=800&auto=format&fit=crop');background-size:cover;background-position:center;box-shadow:inset 0 0 30px rgba(0,0,0,.5)}
+        .playlist-dropdown-btn{background:#a3422a;color:#fff;border:none;padding:10px 20px;border-radius:20px;font-weight:600;display:flex;align-items:center;gap:10px;cursor:pointer;margin-bottom:15px;font-size:14px;letter-spacing:.5px;box-shadow:0 4px 12px rgba(163,66,42,.4)}
+        .playlist-modal{display:none;position:absolute;bottom:0;left:0;width:100%;background:#1e131d;border-radius:25px 25px 0 0;padding:20px;z-index:100;max-height:70%;overflow-y:auto;border-top:1px solid rgba(255,255,255,.2);box-shadow:0 -10px 30px rgba(0,0,0,.8)}
+        .playlist-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:10px}
+        .song-item{display:flex;align-items:center;justify-content:space-between;padding:12px;border-radius:10px;cursor:pointer;margin-bottom:5px}
+        .song-item:hover,.song-item.active{background:rgba(255,255,255,.1)}
+        .song-info{display:flex;align-items:center;gap:12px}
+        .song-icon{width:35px;height:35px;background:#a3422a;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px}
+        .player-card{background:rgba(255,255,255,.08);backdrop-filter:blur(15px);border-radius:25px;padding:18px;width:100%;border:1px solid rgba(255,255,255,.1);margin-bottom:15px}
+        .song-details{display:flex;align-items:center;gap:15px;margin-bottom:15px;text-align:left}
+        .song-cover{width:55px;height:55px;border-radius:12px;object-fit:cover;background:#374151}
+        .song-title{font-size:16px;font-weight:700;color:#fff}.song-artist{font-size:13px;color:#9ca3af}
+        .player-controls{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+        .play-btn{width:45px;height:45px;border-radius:50%;background:#fff;color:#000;border:none;display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer}
+        .ctrl-btn{background:none;border:none;color:#fff;font-size:18px;cursor:pointer;opacity:.8}
+        .progress-bar-container{width:100%;background:rgba(255,255,255,.2);height:4px;border-radius:2px;cursor:pointer;position:relative;margin-bottom:8px}
+        .progress-bar{width:0;height:100%;background:#fff;border-radius:2px}
+        .time-stamps{display:flex;justify-content:space-between;font-size:11px;color:#9ca3af}
+        .bottom-bar{display:flex;justify-content:space-around;padding:12px 10px;border-top:1px solid rgba(255,255,255,.08);background:rgba(0,0,0,.2);font-size:13px;color:#d1d5db}
+        .bottom-action{display:flex;align-items:center;gap:6px;cursor:pointer}
+        .profile-edit-modal{display:none;position:absolute;top:70px;right:20px;background:#2a181e;padding:15px;border-radius:15px;border:1px solid rgba(255,255,255,.2);z-index:100;box-shadow:0 10px 25px rgba(0,0,0,.5);width:220px}
+        .profile-edit-modal input{width:100%;padding:8px;margin-bottom:10px;border-radius:8px;border:1px solid rgba(255,255,255,.2);background:rgba(0,0,0,.3);color:#fff;font-size:12px}
+        .profile-edit-modal button{width:100%;padding:8px;background:#a3422a;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:12px}
+    </style>
 </head>
-
-
 <body>
-
-  <!-- ================= HERO ================= -->
-
-  <header class="hero">
-
-    <div class="glow"></div>
-
-    <p class="eyebrow">
-      শারদীয়া • ২০২৬
-    </p>
-
-    <h1>
-      মা আসছেন 🌺
-    </h1>
-
-    <p class="subtitle">
-      শুভ শারদীয়া
-    </p>
-
-    <!-- পুরোনো countdown — app.js এটাও চালাবে -->
-    <div
-      id="countdown"
-      class="countdown">
-      লোড হচ্ছে...
+<div class="mobile-container">
+    <div class="top-bar">
+        <div class="pill-button"><span class="online-dot"></span><span>196 online</span></div>
+        <div class="user-profile" id="userProfileBtn">
+            <div class="profile-img" id="profileImgContainer"><i class="fa-solid fa-user"></i></div>
+            <span class="username-text" id="usernameDisplay">নিলয়</span>
+        </div>
     </div>
 
-  </header>
+    <div class="profile-edit-modal" id="profileModal">
+        <h4 style="margin-bottom:8px;font-size:14px">প্রোফাইল আপডেট করুন</h4>
+        <input type="text" id="nameInput" placeholder="আপনার নাম লিখুন">
+        <label style="font-size:11px;color:#aaa;display:block;margin-bottom:4px">ছবি আপলোড করুন:</label>
+        <input type="file" id="imageInput" accept="image/*">
+        <button id="saveProfileBtn">সেভ করুন</button>
+    </div>
 
+    <div class="main-content">
+        <div class="title-bengali">পুজো আসছে</div>
+        <div class="countdown-text" id="countdown">পূজার অপেক্ষায়...</div>
+        <div class="artwork-container"></div>
 
-  <main>
+        <button class="playlist-dropdown-btn" id="openPlaylistBtn">
+            <i class="fa-solid fa-list-ul"></i>
+            <span id="currentPlaylistTitle">DURGA PUJA</span>
+            <i class="fa-solid fa-chevron-down"></i>
+        </button>
 
-
-    <!-- =================================================
-         MAHALAYA + PUJA COUNTDOWN
-         ================================================= -->
-
-    <section
-      class="countdown-section"
-      id="puja-countdown">
-
-      <div class="section-heading">
-
-        <span>🌸</span>
-
-        <h2>
-          মা আসছেন
-        </h2>
-
-        <p>
-          শারদীয়ার অপেক্ষা শুরু
-        </p>
-
-      </div>
-
-
-      <div class="countdown-grid">
-
-
-        <!-- মহালয়া -->
-
-        <div class="countdown-card">
-
-          <div class="countdown-icon">
-            🌅
-          </div>
-
-          <h3>
-            মহালয়া
-          </h3>
-
-          <p>
-            ১০ অক্টোবর ২০২৬
-          </p>
-
-
-          <div class="timer">
-
-            <div>
-              <strong id="mahalaya-days">
-                00
-              </strong>
-
-              <span>
-                দিন
-              </span>
+        <div class="player-card">
+            <div class="song-details">
+                <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=200&auto=format&fit=crop" class="song-cover" id="songCover" alt="Song Cover">
+                <div><div class="song-title" id="songTitle">Puja Song 1</div><div class="song-artist" id="songArtist">Durga Puja Special</div></div>
             </div>
-
-
-            <div>
-              <strong id="mahalaya-hours">
-                00
-              </strong>
-
-              <span>
-                ঘণ্টা
-              </span>
+            <div class="progress-bar-container" id="progressContainer"><div class="progress-bar" id="progressBar"></div></div>
+            <div class="time-stamps"><span id="currentTime">0:00</span><span id="duration">0:00</span></div>
+            <div class="player-controls" style="margin-top:10px">
+                <button class="ctrl-btn" id="prevBtn"><i class="fa-solid fa-backward-step"></i></button>
+                <button class="play-btn" id="playBtn"><i class="fa-solid fa-play" id="playIcon"></i></button>
+                <button class="ctrl-btn" id="nextBtn"><i class="fa-solid fa-forward-step"></i></button>
             </div>
-
-
-            <div>
-              <strong id="mahalaya-minutes">
-                00
-              </strong>
-
-              <span>
-                মিনিট
-              </span>
-            </div>
-
-
-            <div>
-              <strong id="mahalaya-seconds">
-                00
-              </strong>
-
-              <span>
-                সেকেন্ড
-              </span>
-            </div>
-
-          </div>
-
         </div>
-
-
-        <!-- দুর্গাপূজা -->
-
-        <div class="countdown-card">
-
-          <div class="countdown-icon">
-            🌺
-          </div>
-
-          <h3>
-            দুর্গাপূজা
-          </h3>
-
-          <p>
-            ষষ্ঠী — ১৬ অক্টোবর ২০২৬
-          </p>
-
-
-          <div class="timer">
-
-            <div>
-              <strong id="puja-days">
-                00
-              </strong>
-
-              <span>
-                দিন
-              </span>
-            </div>
-
-
-            <div>
-              <strong id="puja-hours">
-                00
-              </strong>
-
-              <span>
-                ঘণ্টা
-              </span>
-            </div>
-
-
-            <div>
-              <strong id="puja-minutes">
-                00
-              </strong>
-
-              <span>
-                মিনিট
-              </span>
-            </div>
-
-
-            <div>
-              <strong id="puja-seconds">
-                00
-              </strong>
-
-              <span>
-                সেকেন্ড
-              </span>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =================================================
-         ORIGINAL SUPABASE CLOTHING POLL
-         ================================================= -->
-
-    <section class="card poll-card">
-
-      <h2>
-        👕 এইবার পুজোয় কত সেট জামা-কাপড় হলো?
-      </h2>
-
-      <p class="muted">
-        একটি অপশন বেছে নাও
-      </p>
-
-      <div
-        id="pollOptions"
-        class="options">
-      </div>
-
-      <div
-        id="pollResults"
-        class="results">
-      </div>
-
-    </section>
-
-
-
-    <!-- =================================================
-         NEW CLOTHING STYLE POLL
-         ================================================= -->
-
-    <section
-      class="clothing-section"
-      id="clothing">
-
-      <div class="section-heading">
-
-        <span>👕</span>
-
-        <h2>
-          পূজায় কী পরবে?
-        </h2>
-
-        <p>
-          তোমার পছন্দের পোশাকটি বেছে নাও
-        </p>
-
-      </div>
-
-
-      <div class="clothing-card">
-
-
-        <label class="clothing-option">
-
-          <input
-            type="radio"
-            name="clothing"
-            value="tshirt">
-
-          <span>
-            👕
-          </span>
-
-          <strong>
-            টি-শার্ট
-          </strong>
-
-        </label>
-
-
-        <label class="clothing-option">
-
-          <input
-            type="radio"
-            name="clothing"
-            value="ganji">
-
-          <span>
-            👚
-          </span>
-
-          <strong>
-            গেঞ্জি
-          </strong>
-
-        </label>
-
-
-        <label class="clothing-option">
-
-          <input
-            type="radio"
-            name="clothing"
-            value="shirt">
-
-          <span>
-            👔
-          </span>
-
-          <strong>
-            হাফ-স্লিভ শার্ট
-          </strong>
-
-        </label>
-
-
-        <label class="clothing-option">
-
-          <input
-            type="radio"
-            name="clothing"
-            value="jeans">
-
-          <span>
-            👖
-          </span>
-
-          <strong>
-            জিন্স + টি-শার্ট
-          </strong>
-
-        </label>
-
-      </div>
-
-
-      <div
-        class="poll-results"
-        id="poll-results">
-      </div>
-
-    </section>
-
-
-
-    <!-- =================================================
-         ONLINE
-         ================================================= -->
-
-    <section class="card">
-
-      <div class="section-title">
-
-        <h2>
-          🟢 Online
-        </h2>
-
-        <span id="onlineCount">
-          0 জন
-        </span>
-
-      </div>
-
-      <p class="muted">
-        এই মুহূর্তে ওয়েবসাইটে সক্রিয় দর্শক
-      </p>
-
-    </section>
-
-
-
-    <!-- =================================================
-         DHAK
-         ================================================= -->
-
-    <section class="card">
-
-      <h2>
-        🥁 ঢাক
-      </h2>
-
-      <audio
-        id="dhakPlayer"
-        controls
-        preload="metadata">
-      </audio>
-
-      <p
-        id="dhakEmpty"
-        class="muted">
-        Admin এখনো ঢাকের অডিও দেননি।
-      </p>
-
-    </section>
-
-
-
-    <!-- =================================================
-         PUJA AUDIO
-         ================================================= -->
-
-    <section
-      class="audio-section"
-      id="audio">
-
-      <div class="section-heading">
-
-        <span>🎵</span>
-
-        <h2>
-          পূজার সুর
-        </h2>
-
-        <p>
-          ঢাকের তালে, মায়ের আগমনী গানে
-        </p>
-
-      </div>
-
-
-      <div class="audio-grid">
-
-
-        <div class="audio-card">
-
-          <h3>
-            🥁 পূজা সং ১
-          </h3>
-
-          <audio
-            controls
-            preload="metadata">
-
-            <source
-              src="পুজা সং 1.mp3"
-              type="audio/mpeg">
-
-          </audio>
-
-        </div>
-
-
-        <div class="audio-card">
-
-          <h3>
-            🥁 পূজা সং ২
-          </h3>
-
-          <audio
-            controls
-            preload="metadata">
-
-            <source
-              src="পুজা সং 2.mp3"
-              type="audio/mpeg">
-
-          </audio>
-
-        </div>
-
-
-        <div class="audio-card">
-
-          <h3>
-            🥁 পূজা সং ৩
-          </h3>
-
-          <audio
-            controls
-            preload="metadata">
-
-            <source
-              src="পুজা সং 3.mp3"
-              type="audio/mpeg">
-
-          </audio>
-
-        </div>
-
-
-        <div class="audio-card">
-
-          <h3>
-            🌅 মহালয়ার গান
-          </h3>
-
-          <audio
-            controls
-            preload="metadata">
-
-            <!--
-              এখানে তোমার আসল Mahalaya MP3 filename
-              পরে বসাতে হবে।
-            -->
-
-            <source
-              src="mahalaya.mp3"
-              type="audio/mpeg">
-
-          </audio>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- =================================================
-         SUPABASE PLAYLIST
-         ================================================= -->
-
-    <section class="card">
-
-      <h2>
-        🎵 পুজোর Playlist
-      </h2>
-
-      <div
-        id="playlist"
-        class="playlist">
-      </div>
-
-      <p
-        id="playlistEmpty"
-        class="muted">
-        Admin এখনো গান যোগ করেননি।
+    </div>
+
+    <div class="bottom-bar">
+        <div class="bottom-action" id="shuffleBtn"><i class="fa-solid fa-shuffle"></i> Shuffle</div>
+        <div class="bottom-action" id="repeatBtn"><i class="fa-solid fa-repeat"></i> Repeat</div>
+        <div class="bottom-action" id="dhakBtn"><i class="fa-solid fa-drum"></i> Dhak</div>
+    </div>
+
+    <div class="playlist-modal" id="playlistModal">
+        <div class="playlist-header"><h3>পূজা প্লেলিস্ট (১০টি গান)</h3><i class="fa-solid fa-xmark" id="closePlaylistBtn" style="cursor:pointer;font-size:20px"></i></div>
+        <div id="playlistContainer"></div>
+    </div>
+</div>
+
+<audio id="audioPlayer"></audio>
+
+<script>
+const songs = Array.from({length:10},(_,i)=>({
+    id:i+1,
+    title:`Puja Song ${i+1}`,
+    artist:`Durga Puja Collection`,
+    url:`puja-song-${i+1}.mp3`,
+    cover:`https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=200&auto=format&fit=crop`
+}));
+
+let currentSongIndex=0,isPlaying=false,isShuffle=false,isRepeat=false;
+const audioPlayer=document.getElementById('audioPlayer');
+const playBtn=document.getElementById('playBtn'),playIcon=document.getElementById('playIcon');
+const prevBtn=document.getElementById('prevBtn'),nextBtn=document.getElementById('nextBtn');
+const songTitle=document.getElementById('songTitle'),songArtist=document.getElementById('songArtist');
+const progressBar=document.getElementById('progressBar'),progressContainer=document.getElementById('progressContainer');
+const currentTimeEl=document.getElementById('currentTime'),durationEl=document.getElementById('duration');
+const playlistContainer=document.getElementById('playlistContainer');
+
+function loadSong(song,autoplay=false){
+    songTitle.innerText=song.title;
+    songArtist.innerText=song.artist;
+    document.getElementById('songCover').src=song.cover;
+    audioPlayer.src=song.url;
+    updatePlaylistUI();
+    if(autoplay) playSong();
+}
+function playSong(){
+    isPlaying=true;
+    playIcon.classList.replace('fa-play','fa-pause');
+    audioPlayer.play().catch(()=>{});
+}
+function pauseSong(){
+    isPlaying=false;
+    playIcon.classList.replace('fa-pause','fa-play');
+    audioPlayer.pause();
+}
+playBtn.addEventListener('click',()=>isPlaying?pauseSong():playSong());
+
+function changeSong(direction){
+    if(isShuffle){currentSongIndex=Math.floor(Math.random()*songs.length)}
+    else currentSongIndex=(currentSongIndex+direction+songs.length)%songs.length;
+    loadSong(songs[currentSongIndex],true);
+}
+prevBtn.addEventListener('click',()=>changeSong(-1));
+nextBtn.addEventListener('click',()=>changeSong(1));
+
+audioPlayer.addEventListener('timeupdate',()=>{
+    const {duration,currentTime}=audioPlayer;
+    if(!duration)return;
+    progressBar.style.width=`${(currentTime/duration)*100}%`;
+    const fmt=t=>`${Math.floor(t/60)}:${String(Math.floor(t%60)).padStart(2,'0')}`;
+    currentTimeEl.innerText=fmt(currentTime);
+    durationEl.innerText=fmt(duration);
+});
+audioPlayer.addEventListener('ended',()=>{
+    if(isRepeat){audioPlayer.currentTime=0;playSong();}
+    else changeSong(1);
+});
+progressContainer.addEventListener('click',e=>{
+    if(!audioPlayer.duration)return;
+    audioPlayer.currentTime=(e.offsetX/progressContainer.clientWidth)*audioPlayer.duration;
+});
+
+songs.forEach((song,index)=>{
+    const item=document.createElement('div');
+    item.className=`song-item ${index===0?'active':''}`;
+    item.innerHTML=`<div class="song-info"><div class="song-icon"><i class="fa-solid fa-music"></i></div><div><div style="font-weight:600">${song.title}</div><div style="font-size:12px;color:#888">${song.artist}</div></div></div><i class="fa-solid fa-circle-play"></i>`;
+    item.addEventListener('click',()=>{currentSongIndex=index;loadSong(songs[index],true);document.getElementById('playlistModal').style.display='none'});
+    playlistContainer.appendChild(item);
+});
+function updatePlaylistUI(){
+    playlistContainer.querySelectorAll('.song-item').forEach((item,idx)=>item.classList.toggle('active',idx===currentSongIndex));
+}
+
+document.getElementById('openPlaylistBtn').addEventListener('click',()=>document.getElementById('playlistModal').style.display='block');
+document.getElementById('closePlaylistBtn').addEventListener('click',()=>document.getElementById('playlistModal').style.display='none');
+
+const profileBtn=document.getElementById('userProfileBtn'),profileModal=document.getElementById('profileModal');
+profileBtn.addEventListener('click',()=>profileModal.style.display=profileModal.style.display==='block'?'none':'block');
+
+document.getElementById('saveProfileBtn').addEventListener('click',()=>{
+    const nameVal=document.getElementById('nameInput').value.trim();
+    const imageInput=document.getElementById('imageInput');
+    if(nameVal)document.getElementById('usernameDisplay').innerText=nameVal;
+    if(imageInput.files&&imageInput.files[0]){
+        const reader=new FileReader();
+        reader.onload=e=>document.getElementById('profileImgContainer').innerHTML=`<img src="${e.target.result}" style="width:28px;height:28px;border-radius:50%;object-fit:cover">`;
+        reader.readAsDataURL(imageInput.files[0]);
+    }
+    profileModal.style.display='none';
+});
+
+document.getElementById('shuffleBtn').addEventListener('click',()=>{
+    isShuffle=!isShuffle;
+    document.getElementById('shuffleBtn').style.opacity=isShuffle?'1':'.65';
+});
+document.getElementById('repeatBtn').addEventListener('click',()=>{
+    isRepeat=!isRepeat;
+    document.getElementById('repeatBtn').style.opacity=isRepeat?'1':'.65';
+});
+
+document.getElementById('dhakBtn').addEventListener('click',()=>{
+    const dhak=new Audio('dhak.mp3');
+    dhak.play().catch(()=>alert('dhak.mp3 ফাইলটি একই ফোল্ডারে রাখুন।'));
+});
+
+function updateCountdown(){
+    const target=new Date('2026-10-16T00:00:00+06:00');
+    const now=new Date(),diff=target-now;
+    if(diff<=0){document.getElementById('countdown').innerText='শুভ মহাষষ্ঠী! দুর্গাপূজা শুরু হয়েছে';return}
+    const days=Math.ceil(diff/86400000);
+    document.getElementById('countdown').innerText=`আর ${days} দিন পর দুর্গাপূজা`;
+}
+updateCountdown();
+setInterval(updateCountdown,60000);
+loadSong(songs[0]);
+</script>
+</body>
+</html>
