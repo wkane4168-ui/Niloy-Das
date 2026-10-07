@@ -1,221 +1,537 @@
 
-    <!-- 🥁 ঢাক -->
-    <section class="card dhak-card">
-      <h2>🥁 ঢাক</h2>
+    <!doctype html>
+<html lang="bn">
 
-      <audio id="dhakAudio" preload="metadata">
-        <source src="dhak.mp3" type="audio/mpeg">
-        তোমার ব্রাউজার অডিও চালাতে পারে না।
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>শ্রী শ্রী শালিখা সার্বজনীন দুর্গা মন্দির — শারদীয়া পূজা ২০২৬</title>
+
+  <meta
+    name="description"
+    content="শ্রী শ্রী শালিখা সার্বজনীন দুর্গা মন্দিরের শারদীয়া দুর্গাপূজা ২০২৬"
+  >
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+
+  <!-- ================= HERO ================= -->
+
+  <header class="hero">
+
+    <div class="glow"></div>
+
+    <p class="eyebrow">
+      শারদীয়া • ২০২৬
+    </p>
+
+    <h1>
+      মা আসছেন 🌺
+    </h1>
+
+    <p class="subtitle">
+      শুভ শারদীয়া
+    </p>
+
+    <!-- পুরোনো countdown — app.js এটাও চালাবে -->
+    <div
+      id="countdown"
+      class="countdown">
+      লোড হচ্ছে...
+    </div>
+
+  </header>
+
+
+  <main>
+
+
+    <!-- =================================================
+         MAHALAYA + PUJA COUNTDOWN
+         ================================================= -->
+
+    <section
+      class="countdown-section"
+      id="puja-countdown">
+
+      <div class="section-heading">
+
+        <span>🌸</span>
+
+        <h2>
+          মা আসছেন
+        </h2>
+
+        <p>
+          শারদীয়ার অপেক্ষা শুরু
+        </p>
+
+      </div>
+
+
+      <div class="countdown-grid">
+
+
+        <!-- মহালয়া -->
+
+        <div class="countdown-card">
+
+          <div class="countdown-icon">
+            🌅
+          </div>
+
+          <h3>
+            মহালয়া
+          </h3>
+
+          <p>
+            ১০ অক্টোবর ২০২৬
+          </p>
+
+
+          <div class="timer">
+
+            <div>
+              <strong id="mahalaya-days">
+                00
+              </strong>
+
+              <span>
+                দিন
+              </span>
+            </div>
+
+
+            <div>
+              <strong id="mahalaya-hours">
+                00
+              </strong>
+
+              <span>
+                ঘণ্টা
+              </span>
+            </div>
+
+
+            <div>
+              <strong id="mahalaya-minutes">
+                00
+              </strong>
+
+              <span>
+                মিনিট
+              </span>
+            </div>
+
+
+            <div>
+              <strong id="mahalaya-seconds">
+                00
+              </strong>
+
+              <span>
+                সেকেন্ড
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- দুর্গাপূজা -->
+
+        <div class="countdown-card">
+
+          <div class="countdown-icon">
+            🌺
+          </div>
+
+          <h3>
+            দুর্গাপূজা
+          </h3>
+
+          <p>
+            ষষ্ঠী — ১৬ অক্টোবর ২০২৬
+          </p>
+
+
+          <div class="timer">
+
+            <div>
+              <strong id="puja-days">
+                00
+              </strong>
+
+              <span>
+                দিন
+              </span>
+            </div>
+
+
+            <div>
+              <strong id="puja-hours">
+                00
+              </strong>
+
+              <span>
+                ঘণ্টা
+              </span>
+            </div>
+
+
+            <div>
+              <strong id="puja-minutes">
+                00
+              </strong>
+
+              <span>
+                মিনিট
+              </span>
+            </div>
+
+
+            <div>
+              <strong id="puja-seconds">
+                00
+              </strong>
+
+              <span>
+                সেকেন্ড
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         ORIGINAL SUPABASE CLOTHING POLL
+         ================================================= -->
+
+    <section class="card poll-card">
+
+      <h2>
+        👕 এইবার পুজোয় কত সেট জামা-কাপড় হলো?
+      </h2>
+
+      <p class="muted">
+        একটি অপশন বেছে নাও
+      </p>
+
+      <div
+        id="pollOptions"
+        class="options">
+      </div>
+
+      <div
+        id="pollResults"
+        class="results">
+      </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         NEW CLOTHING STYLE POLL
+         ================================================= -->
+
+    <section
+      class="clothing-section"
+      id="clothing">
+
+      <div class="section-heading">
+
+        <span>👕</span>
+
+        <h2>
+          পূজায় কী পরবে?
+        </h2>
+
+        <p>
+          তোমার পছন্দের পোশাকটি বেছে নাও
+        </p>
+
+      </div>
+
+
+      <div class="clothing-card">
+
+
+        <label class="clothing-option">
+
+          <input
+            type="radio"
+            name="clothing"
+            value="tshirt">
+
+          <span>
+            👕
+          </span>
+
+          <strong>
+            টি-শার্ট
+          </strong>
+
+        </label>
+
+
+        <label class="clothing-option">
+
+          <input
+            type="radio"
+            name="clothing"
+            value="ganji">
+
+          <span>
+            👚
+          </span>
+
+          <strong>
+            গেঞ্জি
+          </strong>
+
+        </label>
+
+
+        <label class="clothing-option">
+
+          <input
+            type="radio"
+            name="clothing"
+            value="shirt">
+
+          <span>
+            👔
+          </span>
+
+          <strong>
+            হাফ-স্লিভ শার্ট
+          </strong>
+
+        </label>
+
+
+        <label class="clothing-option">
+
+          <input
+            type="radio"
+            name="clothing"
+            value="jeans">
+
+          <span>
+            👖
+          </span>
+
+          <strong>
+            জিন্স + টি-শার্ট
+          </strong>
+
+        </label>
+
+      </div>
+
+
+      <div
+        class="poll-results"
+        id="poll-results">
+      </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         ONLINE
+         ================================================= -->
+
+    <section class="card">
+
+      <div class="section-title">
+
+        <h2>
+          🟢 Online
+        </h2>
+
+        <span id="onlineCount">
+          0 জন
+        </span>
+
+      </div>
+
+      <p class="muted">
+        এই মুহূর্তে ওয়েবসাইটে সক্রিয় দর্শক
+      </p>
+
+    </section>
+
+
+
+    <!-- =================================================
+         DHAK
+         ================================================= -->
+
+    <section class="card">
+
+      <h2>
+        🥁 ঢাক
+      </h2>
+
+      <audio
+        id="dhakPlayer"
+        controls
+        preload="metadata">
       </audio>
 
-      <button id="dhakButton" class="round-play-button" onclick="toggleDhak()">
-        ▶
-      </button>
-
-      <p id="dhakStatus" class="muted">ঢাক বাজাতে Play চাপো</p>
-    </section>
-
-
-    <!-- 🎵 Playlist -->
-    <section class="card">
-      <h2>🎵 পুজোর Playlist</h2>
-
-      <div id="playlist" class="playlist">
-
-        <!-- Song 1 -->
-        <div class="playlist-item">
-          <button onclick="playSong('puja-song-1.mp3')">
-            ▶️ Play Song 1
-          </button>
-
-          <audio controls preload="metadata">
-            <source src="puja-song-1.mp3" type="audio/mpeg">
-            তোমার ব্রাউজার অডিও চালাতে পারে না।
-          </audio>
-        </div>
-
-
-        <!-- Song 2 -->
-        <div class="playlist-item">
-          <button onclick="playSong('puja-song-2.mp3')">
-            ▶️ Play Song 2
-          </button>
-
-          <audio controls preload="metadata">
-            <source src="puja-song-2.mp3" type="audio/mpeg">
-            তোমার ব্রাউজার অডিও চালাতে পারে না।
-          </audio>
-        </div>
-
-
-        <!-- Song 3 -->
-        <div class="playlist-item">
-          <button onclick="playSong('puja-song-3.mp3')">
-            ▶️ Play Song 3
-          </button>
-
-          <audio controls preload="metadata">
-            <source src="puja-song-3.mp3" type="audio/mpeg">
-            তোমার ব্রাউজার অডিও চালাতে পারে না।
-          </audio>
-        </div>
-
-
-        <!-- Song 4 -->
-        <div class="playlist-item">
-          <button onclick="playSong('puja-song-4.mp3')">
-            ▶️ Play Song 4
-          </button>
-
-          <audio controls preload="metadata">
-            <source src="puja-song-4.mp3" type="audio/mpeg">
-            তোমার ব্রাউজার অডিও চালাতে পারে না।
-          </audio>
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- 📸 পূজা ফটো -->
-    <section class="card">
-      <h2>📸 পূজা ফটো</h2>
-
-      <div id="photos" class="gallery">
-
-        <img src="1 no photo" alt="পূজা ফটো ১">
-        <img src="2no photo" alt="পূজা ফটো ২">
-        <img src="3 no photo" alt="শুভের চাঁদর">
-        <img src="4 no photo" alt="পূজা ফটো ৪">
-        <img src="5 no photo" alt="পূজা ফটো ৫">
-
-      </div>
-    </section>
-
-
-    <!-- 💌 পূজা শুভেচ্ছা -->
-    <section class="card">
-      <h2>💌 পূজা শুভেচ্ছা</h2>
-
-      <div id="greetings" class="greetings">
-        <!-- শুভেচ্ছার আলাদা ছবি পরে এখানে যোগ করা যাবে -->
-      </div>
-
-      <p id="greetingsEmpty" class="muted">
-        এখনো কোনো শুভেচ্ছা যোগ করা হয়নি।
+      <p
+        id="dhakEmpty"
+        class="muted">
+        Admin এখনো ঢাকের অডিও দেননি।
       </p>
+
     </section>
 
-  </main>
-
-  <footer>Website Created by GVT + Niloy</footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="app.js"></script>
-
-  <script>
-
-    /* ================================
-       AUDIO SYSTEM
-       একসাথে শুধু একটি অডিও বাজবে
-       ================================ */
-
-    const dhakAudio = document.getElementById("dhakAudio");
-    const dhakButton = document.getElementById("dhakButton");
-    const dhakStatus = document.getElementById("dhakStatus");
-
-    function stopOtherAudios(currentAudio) {
-
-      document.querySelectorAll("audio").forEach(audio => {
-
-        if (audio !== currentAudio) {
-          audio.pause();
-        }
-
-      });
-
-    }
 
 
-    /* ================================
-       DHAK PLAY / PAUSE
-       ================================ */
+    <!-- =================================================
+         PUJA AUDIO
+         ================================================= -->
 
-    function toggleDhak() {
+    <section
+      class="audio-section"
+      id="audio">
 
-      if (dhakAudio.paused) {
+      <div class="section-heading">
 
-        stopOtherAudios(dhakAudio);
-        dhakAudio.play().catch(() => {});
+        <span>🎵</span>
 
-      } else {
+        <h2>
+          পূজার সুর
+        </h2>
 
-        dhakAudio.pause();
+        <p>
+          ঢাকের তালে, মায়ের আগমনী গানে
+        </p>
 
-      }
-
-    }
-
-
-    dhakAudio.addEventListener("play", function() {
-
-      stopOtherAudios(dhakAudio);
-
-      dhakButton.innerHTML = "❚❚";
-      dhakStatus.innerHTML = "ঢাক বাজছে 🥁";
-
-    });
+      </div>
 
 
-    dhakAudio.addEventListener("pause", function() {
-
-      dhakButton.innerHTML = "▶";
-      dhakStatus.innerHTML = "ঢাক বাজাতে Play চাপো";
-
-    });
+      <div class="audio-grid">
 
 
-    dhakAudio.addEventListener("ended", function() {
+        <div class="audio-card">
 
-      dhakButton.innerHTML = "▶";
-      dhakStatus.innerHTML = "ঢাক শেষ হয়েছে 🥁";
+          <h3>
+            🥁 পূজা সং ১
+          </h3>
 
-    });
+          <audio
+            controls
+            preload="metadata">
 
+            <source
+              src="পুজা সং 1.mp3"
+              type="audio/mpeg">
 
-    /* ================================
-       PLAYLIST SONG
-       ================================ */
+          </audio>
 
-    function playSong(file) {
-
-      const player = document.querySelector(
-        'audio source[src="' + file + '"]'
-      )?.parentElement;
-
-      if (!player) return;
-
-      stopOtherAudios(player);
-      player.play().catch(() => {});
-
-    }
+        </div>
 
 
-    /* ================================
-       যেকোনো AUDIO PLAY হলে
-       অন্য সব AUDIO বন্ধ হবে
-       ================================ */
+        <div class="audio-card">
 
-    document.addEventListener("play", function(event) {
+          <h3>
+            🥁 পূজা সং ২
+          </h3>
 
-      if (event.target.tagName === "AUDIO") {
-        stopOtherAudios(event.target);
-      }
+          <audio
+            controls
+            preload="metadata">
 
-    }, true);
+            <source
+              src="পুজা সং 2.mp3"
+              type="audio/mpeg">
 
-  </script>
+          </audio>
 
-</body>
-            </html>
-            
+        </div>
+
+
+        <div class="audio-card">
+
+          <h3>
+            🥁 পূজা সং ৩
+          </h3>
+
+          <audio
+            controls
+            preload="metadata">
+
+            <source
+              src="পুজা সং 3.mp3"
+              type="audio/mpeg">
+
+          </audio>
+
+        </div>
+
+
+        <div class="audio-card">
+
+          <h3>
+            🌅 মহালয়ার গান
+          </h3>
+
+          <audio
+            controls
+            preload="metadata">
+
+            <!--
+              এখানে তোমার আসল Mahalaya MP3 filename
+              পরে বসাতে হবে।
+            -->
+
+            <source
+              src="mahalaya.mp3"
+              type="audio/mpeg">
+
+          </audio>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         SUPABASE PLAYLIST
+         ================================================= -->
+
+    <section class="card">
+
+      <h2>
+        🎵 পুজোর Playlist
+      </h2>
+
+      <div
+        id="playlist"
+        class="playlist">
+      </div>
+
+      <p
+        id="playlistEmpty"
+        class="muted">
+        Admin এখনো গান যোগ করেননি।
