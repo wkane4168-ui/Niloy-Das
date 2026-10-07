@@ -6,7 +6,9 @@
   <title>শারদীয়া পূজা</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
   <header class="hero">
     <div class="glow"></div>
     <p class="eyebrow">শারদীয়া • ২০২৬</p>
@@ -16,6 +18,7 @@
   </header>
 
   <main>
+
     <section class="card poll-card">
       <h2>👕 এইবার পুজোয় কত সেট জামা-কাপড় হলো?</h2>
       <p class="muted">একটি অপশন বেছে নাও</p>
@@ -24,20 +27,52 @@
     </section>
 
     <section class="card">
-      <div class="section-title"><h2>🟢 Online</h2><span id="onlineCount">0 জন</span></div>
+      <div class="section-title">
+        <h2>🟢 Online</h2>
+        <span id="onlineCount">0 জন</span>
+      </div>
       <p class="muted">এই মুহূর্তে ওয়েবসাইটে সক্রিয় দর্শক</p>
     </section>
 
+    <!-- 🥁 ঢাক -->
     <section class="card">
       <h2>🥁 ঢাক</h2>
-      <audio id="dhakPlayer" controls preload="metadata"></audio>
-      <p id="dhakEmpty" class="muted">Admin এখনো ঢাকের অডিও দেননি।</p>
+
+      <audio id="dhakPlayer" controls preload="metadata">
+        <source src="dhak.mp3" type="audio/mpeg">
+        তোমার ব্রাউজার অডিও চালাতে পারে না।
+      </audio>
+
+      <p class="muted">শুভ শারদীয়া 🪘</p>
     </section>
 
+    <!-- 🎵 Playlist -->
     <section class="card">
       <h2>🎵 পুজোর Playlist</h2>
-      <div id="playlist" class="playlist"></div>
-      <p id="playlistEmpty" class="muted">Admin এখনো গান যোগ করেননি।</p>
+
+      <div id="playlist" class="playlist">
+
+        <div class="playlist-item">
+          <button onclick="playSong('puja-song-1.mp3')">
+            ▶️ Play
+          </button>
+          <audio controls preload="metadata">
+            <source src="puja-song-1.mp3" type="audio/mpeg">
+          </audio>
+        </div>
+
+        <div class="playlist-item">
+          <button onclick="playSong('puja-song-2.mp3')">
+            ▶️ Play
+          </button>
+          <audio controls preload="metadata">
+            <source src="puja-song-2.mp3" type="audio/mpeg">
+          </audio>
+        </div>
+
+      </div>
+
+      <audio id="mainMusicPlayer" controls preload="metadata"></audio>
     </section>
 
     <section class="card">
@@ -49,13 +84,26 @@
     <section class="card">
       <h2>💌 পূজা শুভেচ্ছা</h2>
       <div id="greetings" class="greetings"></div>
-      <p id="greetingsEmpty" class="muted">এখনো কোনো শুভেচ্ছা যোগ করা হয়নি।</p>
+      <p id="greetingsEmpty" class="muted">
+        এখনো কোনো শুভেচ্ছা যোগ করা হয়নি।
+      </p>
     </section>
+
   </main>
 
   <footer>Website Created by GVT + Niloy</footer>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="app.js"></script>
+
+  <script>
+    function playSong(file) {
+      const player = document.getElementById("mainMusicPlayer");
+
+      player.src = file;
+      player.play().catch(() => {});
+    }
+  </script>
+
 </body>
-</html>
+        </html>
