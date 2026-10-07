@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>শারদীয়া পূজা</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="glow"></div>
+    <p class="eyebrow">শারদীয়া • ২০২৬</p>
+    <h1>মা আসছেন 🌺</h1>
+    <p class="subtitle">শুভ শারদীয়া</p>
+    <div id="countdown" class="countdown">লোড হচ্ছে...</div>
+  </header>
+
+  <main>
+    <section class="card poll-card">
+      <h2>👕 এইবার পুজোয় কত সেট জামা-কাপড় হলো?</h2>
+      <p class="muted">একটি অপশন বেছে নাও</p>
+      <div id="pollOptions" class="options"></div>
+      <div id="pollResults" class="results"></div>
+    </section>
+
+    <section class="card">
+      <div class="section-title"><h2>🟢 Online</h2><span id="onlineCount">0 জন</span></div>
+      <p class="muted">এই মুহূর্তে ওয়েবসাইটে সক্রিয় দর্শক</p>
+    </section>
+
+    <section class="card">
+      <h2>🥁 ঢাক</h2>
+      <audio id="dhakPlayer" controls preload="metadata"></audio>
+      <p id="dhakEmpty" class="muted">Admin এখনো ঢাকের অডিও দেননি।</p>
+    </section>
+
+    <section class="card">
+      <h2>🎵 পুজোর Playlist</h2>
+      <div id="playlist" class="playlist"></div>
+      <p id="playlistEmpty" class="muted">Admin এখনো গান যোগ করেননি।</p>
+    </section>
+
+    <section class="card">
+      <h2>📸 পূজা ফটো</h2>
+      <div id="photos" class="gallery"></div>
+      <p id="photosEmpty" class="muted">এখনো কোনো ছবি যোগ করা হয়নি।</p>
+    </section>
+
+    <section class="card">
+      <h2>💌 পূজা শুভেচ্ছা</h2>
+      <div id="greetings" class="greetings"></div>
+      <p id="greetingsEmpty" class="muted">এখনো কোনো শুভেচ্ছা যোগ করা হয়নি।</p>
+    </section>
+  </main>
+
+  <footer>Website Created by GVT + Niloy</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="app.js"></script>
+</body>
+</html>
