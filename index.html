@@ -34,17 +34,23 @@
       <p class="muted">এই মুহূর্তে ওয়েবসাইটে সক্রিয় দর্শক</p>
     </section>
 
+
     <!-- 🥁 ঢাক -->
-    <section class="card">
+    <section class="card dhak-card">
       <h2>🥁 ঢাক</h2>
 
-      <audio id="dhakPlayer" controls preload="metadata">
+      <audio id="dhakAudio" preload="metadata">
         <source src="dhak.mp3" type="audio/mpeg">
         তোমার ব্রাউজার অডিও চালাতে পারে না।
       </audio>
 
-      <p class="muted">শুভ শারদীয়া 🪘</p>
+      <button id="dhakButton" class="round-play-button" onclick="toggleDhak()">
+        ▶
+      </button>
+
+      <p id="dhakStatus" class="muted">ঢাক বাজাতে Play চাপো</p>
     </section>
+
 
     <!-- 🎵 Playlist -->
     <section class="card">
@@ -52,38 +58,85 @@
 
       <div id="playlist" class="playlist">
 
+        <!-- Song 1 -->
         <div class="playlist-item">
           <button onclick="playSong('puja-song-1.mp3')">
-            ▶️ Play
+            ▶️ Play Song 1
           </button>
+
           <audio controls preload="metadata">
             <source src="puja-song-1.mp3" type="audio/mpeg">
+            তোমার ব্রাউজার অডিও চালাতে পারে না।
           </audio>
         </div>
 
+
+        <!-- Song 2 -->
         <div class="playlist-item">
           <button onclick="playSong('puja-song-2.mp3')">
-            ▶️ Play
+            ▶️ Play Song 2
           </button>
+
           <audio controls preload="metadata">
             <source src="puja-song-2.mp3" type="audio/mpeg">
+            তোমার ব্রাউজার অডিও চালাতে পারে না।
+          </audio>
+        </div>
+
+
+        <!-- Song 3 -->
+        <div class="playlist-item">
+          <button onclick="playSong('puja-song-3.mp3')">
+            ▶️ Play Song 3
+          </button>
+
+          <audio controls preload="metadata">
+            <source src="puja-song-3.mp3" type="audio/mpeg">
+            তোমার ব্রাউজার অডিও চালাতে পারে না।
+          </audio>
+        </div>
+
+
+        <!-- Song 4 -->
+        <div class="playlist-item">
+          <button onclick="playSong('puja-song-4.mp3')">
+            ▶️ Play Song 4
+          </button>
+
+          <audio controls preload="metadata">
+            <source src="puja-song-4.mp3" type="audio/mpeg">
+            তোমার ব্রাউজার অডিও চালাতে পারে না।
           </audio>
         </div>
 
       </div>
-
-      <audio id="mainMusicPlayer" controls preload="metadata"></audio>
     </section>
 
+
+    <!-- 📸 পূজা ফটো -->
     <section class="card">
       <h2>📸 পূজা ফটো</h2>
-      <div id="photos" class="gallery"></div>
-      <p id="photosEmpty" class="muted">এখনো কোনো ছবি যোগ করা হয়নি।</p>
+
+      <div id="photos" class="gallery">
+
+        <img src="1 no photo" alt="পূজা ফটো ১">
+        <img src="2no photo" alt="পূজা ফটো ২">
+        <img src="3 no photo" alt="শুভের চাঁদর">
+        <img src="4 no photo" alt="পূজা ফটো ৪">
+        <img src="5 no photo" alt="পূজা ফটো ৫">
+
+      </div>
     </section>
 
+
+    <!-- 💌 পূজা শুভেচ্ছা -->
     <section class="card">
       <h2>💌 পূজা শুভেচ্ছা</h2>
-      <div id="greetings" class="greetings"></div>
+
+      <div id="greetings" class="greetings">
+        <!-- শুভেচ্ছার আলাদা ছবি পরে এখানে যোগ করা যাবে -->
+      </div>
+
       <p id="greetingsEmpty" class="muted">
         এখনো কোনো শুভেচ্ছা যোগ করা হয়নি।
       </p>
@@ -97,12 +150,106 @@
   <script src="app.js"></script>
 
   <script>
-    function playSong(file) {
-      const player = document.getElementById("mainMusicPlayer");
 
-      player.src = file;
-      player.play().catch(() => {});
+    /* ================================
+       AUDIO SYSTEM
+       একসাথে শুধু একটি অডিও বাজবে
+       ================================ */
+
+    const dhakAudio = document.getElementById("dhakAudio");
+    const dhakButton = document.getElementById("dhakButton");
+    const dhakStatus = document.getElementById("dhakStatus");
+
+    function stopOtherAudios(currentAudio) {
+
+      document.querySelectorAll("audio").forEach(audio => {
+
+        if (audio !== currentAudio) {
+          audio.pause();
+        }
+
+      });
+
     }
+
+
+    /* ================================
+       DHAK PLAY / PAUSE
+       ================================ */
+
+    function toggleDhak() {
+
+      if (dhakAudio.paused) {
+
+        stopOtherAudios(dhakAudio);
+        dhakAudio.play().catch(() => {});
+
+      } else {
+
+        dhakAudio.pause();
+
+      }
+
+    }
+
+
+    dhakAudio.addEventListener("play", function() {
+
+      stopOtherAudios(dhakAudio);
+
+      dhakButton.innerHTML = "❚❚";
+      dhakStatus.innerHTML = "ঢাক বাজছে 🥁";
+
+    });
+
+
+    dhakAudio.addEventListener("pause", function() {
+
+      dhakButton.innerHTML = "▶";
+      dhakStatus.innerHTML = "ঢাক বাজাতে Play চাপো";
+
+    });
+
+
+    dhakAudio.addEventListener("ended", function() {
+
+      dhakButton.innerHTML = "▶";
+      dhakStatus.innerHTML = "ঢাক শেষ হয়েছে 🥁";
+
+    });
+
+
+    /* ================================
+       PLAYLIST SONG
+       ================================ */
+
+    function playSong(file) {
+
+      const player = document.querySelector(
+        'audio source[src="' + file + '"]'
+      )?.parentElement;
+
+      if (!player) return;
+
+      stopOtherAudios(player);
+      player.play().catch(() => {});
+
+    }
+
+
+    /* ================================
+       যেকোনো AUDIO PLAY হলে
+       অন্য সব AUDIO বন্ধ হবে
+       ================================ */
+
+    document.addEventListener("play", function(event) {
+
+      if (event.target.tagName === "AUDIO") {
+        stopOtherAudios(event.target);
+      }
+
+    }, true);
+
   </script>
 
 </body>
