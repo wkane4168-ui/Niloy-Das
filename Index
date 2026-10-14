@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>শারদীয় দুর্গোৎসব - শ্রী শ্রী শালিখা মন্দির</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Mina:wght@400;700&family=Atma:wght@500;600;700&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Mina', sans-serif;
+      background: linear-gradient(135deg, #ffc0cb, #ffb6c1, #fff5ee, #fffaf0);
+      background-attachment: fixed;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+    }
+
+    .main-container {
+      width: 100%;
+      max-width: 600px;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      padding: 25px 20px;
+      border-radius: 25px;
+      box-shadow: 0 15px 35px rgba(219, 112, 147, 0.25);
+      border: 2px solid rgba(255, 182, 193, 0.6);
+      text-align: center;
+    }
+
+    h1 {
+      font-family: 'Atma', cursive;
+      font-size: 2.5rem;
+      color: #c71585;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+      margin-bottom: 8px;
+    }
+
+    .temple-title {
+      font-size: 1.1rem;
+      color: #db7093;
+      font-weight: bold;
+      margin-bottom: 20px;
+      font-family: 'Atma', cursive;
+    }
+
+    /* উইশ ব্যানার */
+    .wish-banner {
+      background: linear-gradient(45deg, #ff69b4, #db7093);
+      color: #fff;
+      padding: 12px;
+      border-radius: 12px;
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+      box-shadow: 0 5px 15px rgba(219, 112, 147, 0.3);
+      font-family: 'Atma', cursive;
+    }
+
+    /* কাউন্টডাউন সেকশন */
+    .countdown-box {
+      background: #fff;
+      padding: 15px;
+      border-radius: 16px;
+      margin-bottom: 25px;
+      border: 1px solid #ffb6c1;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    .countdown-title {
+      font-size: 1.1rem;
+      color: #c71585;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .countdown-timers {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .time-card {
+      background: #fff0f5;
+      padding: 8px 12px;
+      border-radius: 10px;
+      min-width: 60px;
+      border: 1px solid #ffb6c1;
+    }
+
+    .time-card span {
+      display: block;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #c71585;
+    }
+
+    .time-card p {
+      font-size: 0.8rem;
+      color: #db7093;
+    }
+
+    /* ঢাকের বাটন সেকশন */
+    .dhak-section {
+      background: #fff0f5;
+      padding: 18px;
+      border-radius: 16px;
+      margin-bottom: 25px;
+      border: 1px solid #ffb6c1;
+    }
+
+    .dhak-btn {
+      position: relative;
+      width: 140px;
+      height: 85px;
+      background: linear-gradient(180deg, #d87093, #c71585);
+      border-radius: 40px / 20px;
+      border: 3px solid #ffffe0;
+      box-shadow: 0 6px 15px rgba(199, 21, 133, 0.4);
+      cursor: pointer;
+      margin: 10px auto 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      outline: none;
+      transition: transform 0.1s ease;
+    }
+
+    .dhak-btn:active {
+      transform: scale(0.95);
+    }
+
+    .dhak-btn::before, .dhak-btn::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 4px;
+      background: #ffffe0;
+      left: 0;
+    }
+    .dhak-btn::before { top: 14px; }
+    .dhak-btn::after { bottom: 14px; }
+
+    .dhak-text {
+      color: #fff;
+      font-family: 'Atma', cursive;
+      font-size: 1.1rem;
+      font-weight: bold;
+      z-index: 2;
+    }
+
+    /* সেকশন হেডিং */
+    .section-heading {
+      font-family: 'Atma', cursive;
+      font-size: 1.5rem;
+      color: #c71585;
+      margin: 20px 0 12px 0;
+      text-align: left;
+      border-left: 4px solid #db7093;
+      padding-left: 8px;
+    }
+
+    /* মন্দির/উৎসবের ছবি গ্যালারি (২টি ছবি - Vertical 9:16 Ratio) */
+    .temple-gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .gallery-card {
+      background: #fff;
+      padding: 8px;
+      border-radius: 12px;
+      border: 1px solid #ffb6c1;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    .gallery-card img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .gallery-card p {
+      font-size: 0.85rem;
+      color: #db7093;
+      margin-top: 6px;
+      font-weight: bold;
+    }
+
+    /* ফটো সেশন সেকশন (দর্শকদের ছবি আপলোড) */
+    .photo-session-box {
+      background: #fff;
+      padding: 15px;
+      border-radius: 16px;
+      margin-bottom: 25px;
+      border: 1px solid #ffb6c1;
+    }
+
+    .upload-input {
+      margin: 10px 0;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .user-photos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .user-photo-item img {
+      width: 100%;
+      height: 130px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+
+    /* ফুটার ক্রেডিট */
+    .footer-credit {
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 1px dashed #ffb6c1;
+      font-size: 0.9rem;
+      color: #c71585;
+      font-weight: bold;
+      line-height: 1.5;
+    }
+
+    .creator-name {
+      display: inline-block;
+      background: #fff0f5;
+      padding: 6px 15px;
+      border-radius: 20px;
+      border: 1px solid #ffb6c1;
+      margin-top: 8px;
+      color: #db7093;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main-container">
+    
+    <!-- হেডিং -->
+    <h1>🌸 শারদীয় দুর্গোৎসব 🌸</h1>
+    <div class="temple-title">শ্রী শ্রী শালিখা দুর্গাপূজা মন্দির, ঝিনাইদহ, কালীগঞ্জ</div>
+
+    <!-- উইশ ব্যানার -->
+    <div id="wishBanner" class="wish-banner">
+      শুভ শারদীয় দুর্গোৎসব!
+    </div>
+
+    <!-- কাউন্টডাউন সেকশন (অটো লুপ উইথ নেক্সট ইয়ার) -->
+    <div class="countdown-box">
+      <div class="countdown-title" id="countdownTitle">মহোৎসব শুরু হতে বাকি:</div>
+      <div class="countdown-timers">
+        <div class="time-card"><span id="days">00</span><p>দিন</p></div>
+        <div class="time-card"><span id="hours">00</span><p>ঘণ্টা</p></div>
+        <div class="time-card"><span id="minutes">00</span><p>মিটি</p></div>
+        <div class="time-card"><span id="seconds">00</span><p>সেকেন্ড</p></div>
+      </div>
+    </div>
+
+    <!-- ঢাকের সাউন্ড বাটন -->
+    <div class="dhak-section">
+      <div style="font-family: 'Atma', cursive; font-size: 1.2rem; color: #c71585; font-weight: bold;">🥁 ঢাকের তালে আনন্দ 🥁</div>
+      <button class="dhak-btn" onclick="playDhak()">
+        <span style="font-size: 1.3rem;">🎵</span>
+        <span class="dhak-text">ঢাক বাজাও</span>
+      </button>
+      <audio id="dhakAudio" src="dhak.mp3" loop></audio>
+    </div>
+
+    <!-- শারদীয় উৎসবের বিশেষ ছবি (২টি ছবি) -->
+    <div class="section-heading">📸 মন্দিরের বিশেষ মুহূর্ত</div>
+    <div class="temple-gallery">
+      <div class="gallery-card">
+        <img src="1 no photo.jpg" alt="1 no photo" onerror="this.src='https://via.placeholder.com/150x240?text=Temple+Photo+1'">
+        <p>১ নং ফটো</p>
+      </div>
+      <div class="gallery-card">
+        <img src="2 no photo.jpg" alt="2 no photo" onerror="this.src='https://via.placeholder.com/150x240?text=Temple+Photo+2'">
+        <p>২ নং ফটো</p>
+      </div>
+    </div>
+
+    <!-- ফটো সেশন (দর্শকদের ছবি আপলোড সেকশন) -->
+    <div class="photo-session-box">
+      <div class="section-heading" style="margin-top: 0; border: none; padding: 0; font-size: 1.3rem;">📸 দর্শনার্থীদের ফটো সেশন</div>
+      <p style="font-size: 0.85rem; color: #666; margin-bottom: 8px;">আপনার পূজার সুন্দর মুহূর্তের ছবি এখানে আপলোড করুন!</p>
+      <input type="file" id="userPhotoInput" accept="image/*" class="upload-input" onchange="uploadUserPhoto(event)">
+      <div class="user-photos-grid" id="userPhotosContainer">
+        <!-- আপলোড করা ছবিগুলো এখানে দেখাবে -->
+      </div>
+    </div>
+
+    <!-- ফুটার ও ক্রেডিট -->
+    <div class="footer-credit">
+      <div>পূজা উদযাপন কমিটি: শ্রী শ্রী শালিখা দুর্গাপূজা মন্দির, কালীগঞ্জ</div>
+      <div class="creator-name">✨ Website Created by Niloy Das + Badhan Das ✨</div>
+    </div>
+
+  </div>
+
+  <script>
+    // তারিখ অনুযায়ী উইশ আপডেট
+    function updateWish() {
+      const today = new Date();
+      const month = today.getMonth() + 1;
+      const date = today.getDate();
+      const banner = document.getElementById('wishBanner');
+
+      if (month === 10) {
+        if (date === 16) banner.innerText = "🌸 শুভ ষষ্ঠী! 🌸";
+        else if (date === 17) banner.innerText = "🌺 শুভ সপ্তমী! 🌺";
+        else if (date === 18) {
+          banner.innerText = "🌼 শুভ মহাঅষ্টমী! 🌼";
+        }
+        else if (date === 19) banner.innerText = "🌻 শুভ মহানবমী! 🌻";
+        else if (date === 20) banner.innerText = "🔱 শুভ বিজয়া দশমী! 🔱";
+        else if (date > 20) banner.innerText = "✨ শুভ বিজয়ার প্রীতি ও শুভেচ্ছা! ✨";
+        else banner.innerText = "🎉 শুভ শারদীয় দুর্গোৎসবের আগাম শুভেচ্ছা! 🎉";
+      } else {
+        banner.innerText = "🌸 শুভ শারদীয় দুর্গোৎসব! 🌸";
+      }
+    }
+
+    // অটো-লুপিং কাউন্টডাউন (চলতি বছর বা পরবর্তী বছরের ১৬ অক্টোবর সকাল ৬:০০)
+    function updateCountdown() {
+      const now = new Date();
+      let year = now.getFullYear();
+      let pujaDate = new Date(`October 16, ${year} 06:00:00`).getTime();
+
+      // যদি এই বছরের পূজা পার হয়ে যায়, তবে স্বয়ংক্রিয়ভাবে পরের বছরের (2027) কাউন্টডাউন শুরু হবে
+      if (now.getTime() > pujaDate) {
+        year += 1;
+        pujaDate = new Date(`October 16, ${year} 06:00:00`).getTime();
+        document.getElementById('countdownTitle').innerText = `${year} সালের পূজার কাউন্টডাউন:`;
+      } else {
+        document.getElementById('countdownTitle').innerText = "মহোৎসব শুরু হতে বাকি:";
+      }
+
+      const diff = pujaDate - now.getTime();
+
+      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById('days').innerText = d < 10 ? '0' + d : d;
+      document.getElementById('hours').innerText = h < 10 ? '0' + h : h;
+      document.getElementById('minutes').innerText = m < 10 ? '0' + m : m;
+      document.getElementById('seconds').innerText = s < 10 ? '0' + s : s;
+    }
+
+    // ঢাক বাজানোর ফাংশন
+    function playDhak() {
+      const audio = document.getElementById('dhakAudio');
+      if (audio.paused) {
+        audio.play().catch(e => alert("দয়া করে ফোল্ডারে 'dhak.mp3' ফাইলটি রাখুন!"));
+      } else {
+        audio.pause();
+        audio.currentTime = 0;
+      }
+    }
+
+    // দর্শনার্থীদের ছবি আপলোড করে দেখানোর ফাংশন (ফটো সেশন)
+    function uploadUserPhoto(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const container = document.getElementById('userPhotosContainer');
+          const div = document.createElement('div');
+          div.className = 'user-photo-item';
+          div.innerHTML = `<img src="${e.target.result}" alt="Visitor Photo">`;
+          container.appendChild(div);
+        }
+        reader.readAsDataURL(file);
+      }
+    }
+
+    updateWish();
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
